@@ -3,6 +3,8 @@ import 'package:lox_services/widgets/default_button.dart';
 import 'package:lox_services/size_config.dart';
 
 import '../widgets/textField.dart';
+import 'orderScreen.dart';
+import 'signUpScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login';
@@ -23,7 +25,11 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: SizeConfig.screenHeight! * 0.1,
           ),
-          DefaultButton(press: () {}, text: 'SIGN UP'),
+          DefaultButton(
+              press: () {
+                Navigator.pushNamed(context, SignUpScreen.routeName);
+              },
+              text: 'SIGN UP'),
           SizedBox(
             height: SizeConfig.screenHeight! * 0.1,
           ),
@@ -42,7 +48,9 @@ class LoginScreen extends StatelessWidget {
             height: SizeConfig.screenHeight! * 0.06,
           ),
           DefaultButton(
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, OrderScreen.routeName);
+            },
             text: 'LOGIN',
             color: Colors.red,
             borderColor: Colors.transparent,

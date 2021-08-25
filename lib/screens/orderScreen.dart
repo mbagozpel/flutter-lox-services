@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lox_services/size_config.dart';
 import 'package:lox_services/widgets/default_button.dart';
 
+import 'drawer_click.dart';
+import 'startTask.dart';
+
 class OrderScreen extends StatelessWidget {
   static const routeName = 'order';
 
@@ -9,32 +12,54 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-      ),
-      drawer: Drawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: SizeConfig.screenHeight! * 0.3,
+            height: SizeConfig.screenHeight! * 0.4,
             width: double.infinity,
             decoration: BoxDecoration(color: Colors.black),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  'assets/images/lox.png',
+                SizedBox(
+                  height: SizeConfig.screenHeight! * 0.06,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                    size: getProportionateScreenWidth(30),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, DrawerClick.routeName);
+                  },
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: getProportionateScreenWidth(40)),
+                  child: Image.asset(
+                    'assets/images/lox.png',
+                  ),
                 ),
                 SizedBox(
                   height: SizeConfig.screenHeight! * 0.02,
                 ),
-                Text(
-                  'Order from LOX Services \n Now',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: getProportionateScreenWidth(20),
+                      top: getProportionateScreenHeight(10)),
+                  child: Text(
+                    'Order from \nLOX Services now',
+                    // textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4!
+                        .copyWith(color: Colors.white),
+                  ),
                 ),
               ],
             ),
@@ -73,7 +98,11 @@ class OrderScreen extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.screenHeight! * 0.08,
               ),
-              DefaultButton(press: () {}, text: 'Proceed')
+              DefaultButton(
+                  press: () {
+                    Navigator.pushNamed(context, StartTask.routeName);
+                  },
+                  text: 'Proceed')
             ],
           )
         ],

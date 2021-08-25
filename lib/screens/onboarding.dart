@@ -3,6 +3,7 @@ import 'package:lox_services/widgets/default_button.dart';
 import 'package:lox_services/size_config.dart';
 
 import 'login.dart';
+import 'signUpScreen.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -83,7 +84,9 @@ class _OnboardingState extends State<Onboarding> {
             height: SizeConfig.screenHeight! * 0.02,
           ),
           DefaultButton(
-              press: () {},
+              press: () {
+                Navigator.pushNamed(context, SignUpScreen.routeName);
+              },
               text: 'SIGN UP',
               color: Colors.white,
               textColor: Colors.black),

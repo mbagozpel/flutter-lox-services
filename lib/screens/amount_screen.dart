@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lox_services/widgets/custom_appbar.dart';
 import 'package:lox_services/widgets/default_button.dart';
 
 import '../size_config.dart';
+import 'orderScreen.dart';
+import 'main_page.dart';
 
 class TotalAmount extends StatelessWidget {
   static const routeName = '/total';
@@ -10,28 +13,7 @@ class TotalAmount extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            Icon(
-              Icons.menu,
-              size: getProportionateScreenWidth(30),
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: SizeConfig.screenWidth! * 0.2,
-            ),
-            Text(
-              'LOX SERVICE',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: getProportionateScreenWidth(25)),
-            ),
-          ],
-        ),
-        elevation: 0,
-      ),
+      appBar: buildAppBar(context),
       body: Column(
         children: [
           SizedBox(
@@ -46,7 +28,7 @@ class TotalAmount extends StatelessWidget {
                 color: Colors.red, borderRadius: BorderRadius.circular(20)),
             child: Center(
                 child: Text(
-              'Total Amount: N2000',
+              'Total Amount: ${MainPage.amount}',
               style: Theme.of(context)
                   .textTheme
                   .headline4!
@@ -56,7 +38,11 @@ class TotalAmount extends StatelessWidget {
           SizedBox(
             height: SizeConfig.screenHeight! * 0.2,
           ),
-          DefaultButton(press: () {}, text: 'CLOSE')
+          DefaultButton(
+              press: () {
+                Navigator.pushNamed(context, OrderScreen.routeName);
+              },
+              text: 'CLOSE')
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:lox_services/widgets/default_button.dart';
 import 'package:lox_services/widgets/textField.dart';
 
 import 'login.dart';
+import 'profile.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const routeName = '/signup';
@@ -52,7 +53,9 @@ class SignUpScreen extends StatelessWidget {
             height: SizeConfig.screenHeight! * 0.06,
           ),
           DefaultButton(
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, ProfileScreen.routeName);
+            },
             text: 'SIGN UP',
             color: Colors.red,
             borderColor: Colors.transparent,

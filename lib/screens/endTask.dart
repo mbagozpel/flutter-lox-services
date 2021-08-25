@@ -1,37 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lox_services/widgets/custom_appbar.dart';
 
 import '../size_config.dart';
+import 'ended_sucesfully.dart';
+import 'main_page.dart';
 
 class EndTask extends StatelessWidget {
-  static const routeName = '/start';
+  static const routeName = '/end';
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            Icon(
-              Icons.menu,
-              size: getProportionateScreenWidth(30),
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: SizeConfig.screenWidth! * 0.2,
-            ),
-            Text(
-              'LOX SERVICE',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: getProportionateScreenWidth(25)),
-            ),
-          ],
-        ),
-        elevation: 0,
-      ),
+      appBar: buildAppBar(context),
       body: Column(
         children: [
           SizedBox(
@@ -58,7 +40,13 @@ class EndTask extends StatelessWidget {
               children: [
                 MaterialButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, MainPage.routeName,
+                        arguments: {
+                          'begin': 2.0,
+                          'end': 3.0,
+                          'start_money': 'N2000',
+                          'end_money': 'N3000'
+                        });
                   },
                   height: getProportionateScreenHeight(60),
                   minWidth: SizeConfig.screenWidth! * 0.35,
@@ -74,7 +62,9 @@ class EndTask extends StatelessWidget {
                       side: BorderSide(color: Colors.black)),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, EndedSuccessfully.routeName);
+                  },
                   height: getProportionateScreenHeight(60),
                   minWidth: SizeConfig.screenWidth! * 0.35,
                   color: Colors.black,

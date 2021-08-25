@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lox_services/size_config.dart';
+import 'package:lox_services/widgets/custom_appbar.dart';
+
+import 'amount_screen.dart';
 
 class EndedSuccessfully extends StatelessWidget {
   static const routeName = '/ended';
@@ -9,33 +12,20 @@ class EndedSuccessfully extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            Icon(
-              Icons.menu,
-              size: getProportionateScreenWidth(30),
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: SizeConfig.screenWidth! * 0.2,
-            ),
-            Text(
-              'LOX SERVICE',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: getProportionateScreenWidth(25)),
-            ),
-          ],
-        ),
-        elevation: 0,
-      ),
+      appBar: buildAppBar(context),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            TweenAnimationBuilder(
+              tween: Tween(begin: 0.0, end: 1.0),
+              duration: Duration(seconds: 3),
+              builder: (_, value, child) => Container(),
+              onEnd: () {
+                Navigator.pushNamed(context, TotalAmount.routeName);
+              },
+            ),
             SizedBox(
               height: SizeConfig.screenHeight! * 0.1,
             ),

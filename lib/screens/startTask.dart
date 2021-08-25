@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lox_services/size_config.dart';
 import 'package:lox_services/widgets/custom_appbar.dart';
 
+import 'main_page.dart';
+
 class StartTask extends StatelessWidget {
   static const routeName = '/start';
 
@@ -10,7 +12,7 @@ class StartTask extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Column(
         children: [
           SizedBox(
@@ -53,7 +55,15 @@ class StartTask extends StatelessWidget {
                       side: BorderSide(color: Colors.black)),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, MainPage.routeName,
+                        arguments: {
+                          'begin': 1.0,
+                          'end': 2.0,
+                          'start_money': 'N1000',
+                          'end_money': 'N2000'
+                        });
+                  },
                   height: getProportionateScreenHeight(60),
                   minWidth: SizeConfig.screenWidth! * 0.35,
                   color: Colors.black,
